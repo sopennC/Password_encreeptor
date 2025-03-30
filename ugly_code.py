@@ -1,8 +1,12 @@
 import secrets
 import string
 import re
+from enum import Enum
+
 '''
-Импортируем что-то.   >:(
+
+>:(
+
 '''
 
 
@@ -23,17 +27,16 @@ PATTERN = "[" + re.escape("".join(wrong_expectation)) + "]"  # Страшно в
 Расскраска нашего str для вывода в терминальчик
 просто пишем :   print(ugly.color("Наше сообщение","цвет"))
 '''
-def color(text: str, color: str = "reset") -> str:
-    colors = {
-        "black": "0;30",    # чорный
-        "red": "1;31",      # красный
-        "green": "1;32",    # зеленый
-        "yellow": "1;33",   # желтый
-        "blue": "1;34",     # синий
-        "magenta": "1;35",  # фиолетовый
-        "cyan": "1;36",     # голубой
-        "white": "1;37",    # белый
-        "reset": "0"        # СБРОС ДО ЗАВОДСКИХ
-    }
-    code = colors.get(color.lower(), "0")  # по умолчанию сброс
-    return f"\033[{code}m{text}\033[0m"
+class Color(Enum):
+        Black = "0;30"    # чорный
+        Red = "1;31"      # красный
+        Green = "1;32"    # зеленый
+        Yellow = "1;33"   # желтый
+        Blue = "1;34"     # синий
+        Magenta = "1;35"  # фиолетовый
+        Cyan = "1;36"     # голубой
+        White = "1;37"    # белый
+        Reset = "0"       # СБРОС ДО ЗАВОДСКИХ
+
+def colorize_terminal(text: str, color: Color = Color.Reset) -> str:
+    return f"\033[{color.value}m{text}\033[0m"
