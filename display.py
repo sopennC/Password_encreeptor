@@ -3,6 +3,7 @@ import time
 import string
 import re
 from enum import Enum
+import generator_v2
 
 # PATTERN = (lambda: "[" + re.escape("".join(set(string.punctuation) - set("!@#$%^&*-_=+"))) + "]")()
 PATTERN = "[" + re.escape("".join(set(string.punctuation) - set("!@#$%^&*-_=+"))) + "]"
@@ -75,9 +76,10 @@ def question_about_length():
 
     answer = input("")
     if answer == '1':
-        pass
+        length = int(input("Введите длину пароля: "))
+        generator_v2.generate_password(length)
     elif answer == '2':
-        pass
+        generator_v2.generate_password()
     else:
         os.system("cls")
         print(colorize_terminal("\n\tВведи 1 или 2, лол!", Color.Red))
