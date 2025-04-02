@@ -33,7 +33,7 @@ def welcome_message():
                         print(value)
 
 def complete_code():
-        os.system('clear')
+        os.system('cls')
         print( colorize_terminal("-" * 80, Color.Cyan))
         print("""
               
@@ -46,22 +46,22 @@ def complete_code():
               """)
         print( colorize_terminal("-" * 80, Color.Cyan))
         time.sleep(0.3)
-        os.system('clear')
+        os.system('cls')
 
 def choice1():
-        os.system('clear')
+        os.system('cls')
         print( colorize_terminal("-" * 80, Color.Cyan))
         print( colorize_terminal("\t\t\t\tГенерация пароля", Color.Cyan))
         print( colorize_terminal("-" * 80, Color.Cyan))  
 
 def choice2():
-        os.system('clear')
+        os.system('cls')
         print( colorize_terminal("-" * 80, Color.Cyan))
         print( colorize_terminal("\t\t\t\tСвой пароль", Color.Cyan))
         print( colorize_terminal("-" * 80, Color.Cyan))  
 
 def choice3():
-        os.system('clear')
+        os.system('cls')
         print_title("Кластер паролей", Color.Cyan)
         
 
@@ -83,11 +83,11 @@ def question_about_length():
                 if length < 8:
                        print(colorize_terminal("\nДлина пароля должна быть больше 8! ", Color.Red))
                        input("\nНажмите 'Enter' чтобы вернуться: ")
-                       os.system("clear")
+                       os.system("cls")
                        return question_about_length()
                 else:
                         password = generator_v2.generate_password(length)
-                        os.system('clear')
+                        os.system('cls')
                         return password
         except ValueError:
                print("\nВведите цифру! ")
@@ -96,10 +96,10 @@ def question_about_length():
 
     elif answer == '2':
         password = generator_v2.generate_password()
-        os.system("clear")
+        os.system("cls")
         return password
     else:
-        os.system("clear")
+        os.system("cls")
         print(colorize_terminal("\n\tВведи 1 или 2, лол!", Color.Red))
         return question_about_length()
 
@@ -116,7 +116,7 @@ def confirmation(login, name , password):
                 print(colorize_terminal("\nПароль успешно сохранен в кластер!\n", Color.Red))
                 input("Нажмите 'Enter' чтобы вернуться: ")
         elif answer == '2':
-                os.system("clear")
+                os.system("cls")
                 print(colorize_terminal("\nПрервано :(\n", Color.Red))
                 input("Нажмите 'Enter' чтобы вернуться: ")
         else:

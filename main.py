@@ -6,11 +6,11 @@ import time
 def main():
     try:
         while True:
-            os.system("clear")
+            os.system("cls")
             display.welcome_message()
             
             choice = input("\nВыберите опцию (1-4): ")
-            os.system('clear')
+            os.system('cls')
                     
             if choice == "1":
                 display.choice1()
@@ -24,7 +24,7 @@ def main():
                 name = input("\nВведите название сервиса:  ")
                 login = input("\nВведите логин:  ")
                 password = input("\nВведите пароль:  ")
-                os.system("clear")
+                os.system("cls")
                 display.confirmation(login, name, password)
 
                 
@@ -35,7 +35,7 @@ def main():
                 if not names:
                     print(display.colorize_terminal("\nПока тут ничего нет ...  \n", display.Color.Blue))
                     input("Нажмите 'Enter' чтобы вернуться: ")
-                    os.system("clear")
+                    os.system("cls")
                 else:
                     print("Список доступных записей:")
                     for i, name in enumerate(names, start=1):
