@@ -26,7 +26,7 @@ def generate_password(length=PASSWORD_LENGTH, use_digits=True, use_special=True)
         ):
             return prep
         else:
-            generate_password(length, use_digits, use_special)
+            return generate_password(length, use_digits, use_special)
 def has_digits(p) -> bool: return bool(re.search(r'\d',p))
 def has_lowercase(p) -> bool: return bool(re.search(r'[a-z]',p))
 def has_uppercase(p) -> bool: return bool(re.search(r'[A-Z]',p))

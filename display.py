@@ -101,7 +101,7 @@ def question_about_length():
     else:
         os.system("clear")
         print(colorize_terminal("\n\tВведи 1 или 2, лол!", Color.Red))
-        question_about_length()
+        return question_about_length()
 
 def confirmation(login, name , password):
         print(colorize_terminal("Проверьте данные\nТут можете скопировать пароль :)  \n",Color.Red))
