@@ -37,25 +37,33 @@ CREATE TABLE IF NOT EXISTS vault (
 )
 ''')
 
-def save_entry(name, login, password):
+def save_generated(name, login, password):
     encrypted = encrypt(password)
-    cursor.execute('REPLACE INTO vault (name, login, encrypted_password) VALUES (?, ?, ?)',
-                   (name, login, encrypted))
-    conn.commit()
+    with sqlite3.connect('storage.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('REPLACE INTO vault (name, login, encrypted_password) VALUES (?, ?, ?)',
+                       (name, login, encrypted)
+                       )
+        conn.commit()
     print(f"[{name}] сохранено.")
 
+
 def get_entry(name):
-    cursor.execute('SELECT login, encrypted_password FROM vault WHERE name = ?', (name,))
-    row = cursor.fetchone()
-    if row:
-        login, encrypted = row
-        password = decrypt(encrypted)
-        print(f"[{name}]\nLogin: {login}\nPassword: {password}")
-    else:
-        print("Не найдено.")
+    with sqlite3.connect('storage.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT login, encrypted_password FROM vault WHERE name = ?', (name,))
+        row = cursor.fetchone()
+        if row:
+            login, encrypted = row
+            password = decrypt(encrypted)
+            print(f"\n[{name}]\n\nLogin: {login}\nPassword: {password}")
+        else:
+            print("\nНе найдено.")
 
-# === Пример ===
-save_entry("telegram", "ivan@tg", "telegramPass123")
-get_entry("telegram")
 
-conn.close()
+def list_names():
+    with sqlite3.connect('storage.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT name FROM vault')
+        rows = cursor.fetchall()
+        return [name for (name,) in rows]

@@ -1,11 +1,7 @@
 import secrets
 import string
 import re
-from display import PATTERN
-
-
-PASSWORD_LENGTH = 12 # <--- Длина пароля
-
+from settings import PATTERN, PASSWORD_LENGTH
 
 def generate_prep(length=PASSWORD_LENGTH, use_digits=True, use_special=True) -> str:
 
@@ -22,17 +18,19 @@ def generate_password(length=PASSWORD_LENGTH, use_digits=True, use_special=True)
     while True:
         prep = generate_prep(length, use_digits, use_special)
         if (
-            has_digits(prep)
-            and has_lowercase(prep)
-            and has_uppercase(prep)
-            and check_pattern(prep)
-            and not check_badpattern(prep)
+            has_digits(prep) 
+            and has_lowercase(prep) 
+            and has_uppercase(prep) 
+            and check_pattern(prep) 
+            and not check_badpattern(prep) 
         ):
             return prep
         else:
-            generate_password()
+            generate_password(length, use_digits, use_special)
 def has_digits(p) -> bool: return bool(re.search(r'\d',p))
 def has_lowercase(p) -> bool: return bool(re.search(r'[a-z]',p))
 def has_uppercase(p) -> bool: return bool(re.search(r'[A-Z]',p))
 def check_badpattern(p) -> bool: return bool(re.search(PATTERN,p))
-def check_pattern(p) -> bool: return bool(re.search("!@#$%^&*-_=+",p))
+def check_pattern(p) -> bool: return bool(re.search(r"[!@#$%^&*-_=+]",p))
+
+print(generate_password())
